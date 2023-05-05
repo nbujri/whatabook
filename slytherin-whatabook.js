@@ -50,6 +50,9 @@ db.createCollection("customers", {
         customerId: {
           bsonType: "string",
         },
+        wishlist: {
+          bsonType: "array",
+        },
       },
     },
   },
