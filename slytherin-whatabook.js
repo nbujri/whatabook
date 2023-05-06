@@ -188,3 +188,29 @@ db.books.find({ author: "author2" });
 
 // display book by specified bookId
 db.books.find({ bookId: "b5" });
+
+// display wishlist by customerId
+db.customers.aggregate([
+  {
+    $match: {
+      customerId: "c1",
+    },
+  },
+  {
+    $project: {
+      wishlist: 1,
+    },
+  },
+]);
+
+// add book to a customers wishlist
+db.customers.updateOne(
+  { customerId: "c2" },
+  { $push: { wishlist: { bookId: "b5" } } }
+);
+
+// remove book from a customers wishlist
+db.customers.updateOne(
+  { customerId: "c2" },
+  { $pull: { wishlist: { bookId: "b5" } } }
+);
