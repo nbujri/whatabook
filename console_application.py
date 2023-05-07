@@ -1,11 +1,18 @@
+"""
+Title: console_application.py
+Written by: Ngi Bujri, Janis Gonzalez, William Egge
+Description: a console application that allows a user to interact with the whatabook database
+Date: May 6th 2023
+"""
+
 import pymongo
 from pymongo import MongoClient
 
-# Establish a connection to the MongoDB server
+# Establish a connection to the server
 client = MongoClient("mongodb://localhost:27017")
 
-# Connect to the desired database
-db = client["your_database_name"]
+# Connect to the database
+db = client["database_name"]
 
 # Define helper functions
 def display_books(books):
