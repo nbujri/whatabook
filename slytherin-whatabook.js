@@ -189,7 +189,7 @@ db.books.find({ author: "author2" });
 // display book by specified bookId
 db.books.find({ bookId: "b5" });
 
-// display wishlist by customerId
+// display books from customer wishlist
 db.customers.aggregate([
   {
     $match: {
@@ -197,8 +197,11 @@ db.customers.aggregate([
     },
   },
   {
-    $project: {
-      wishlist: 1,
+    $lookup: {
+      from: "books",
+      localField: "wishlist.bookId",
+      foreignField: "bookId",
+      as: "wishlistBooks",
     },
   },
 ]);
